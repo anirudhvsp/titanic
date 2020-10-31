@@ -1,1 +1,1 @@
-web:gnuicorn wsgi:app
+web:gnuicorn app:app
