@@ -1,0 +1,1 @@
+web:gnuicorn wsgi:app
