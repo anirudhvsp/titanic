@@ -2,46 +2,183 @@
 <html>
 
 <head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<style>
 		html {
-		    height: 110%;
-		}
+    height: 100%;
+}
 
-		body {
-		    margin:0;
-		    padding:0;
-		    font-family: sans-serif;
-		    background: linear-gradient(#141e30, #243b55);
-		}
+body {
+    margin:0;
+    padding:0;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    background: linear-gradient(#141e30, #243b55);
+}
 
-		.header {
-		    background-color: lightblue;    
-		    text-align: center;
-		}
 
-		.flex-container {
-		    display: flex;
-		    margin: 35px;
-		}
+.flex-container {
+    display: flex;
+    margin-left: 35px;
+    margin-bottom: 35px;
+    margin-right: 35px;
+    margin-top: -40px;
+}
 
-		.flex-child {
-		    flex: 1;
-		    color: white;
-		    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-		}  
+.flex-child {
+    flex: 1;
+    color: white;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}  
 
-		.flex-child:first-child {
-		    margin-right: 20px;
-		}
+.flex-child:first-child {
+    margin-right: 20px;
+} 
 
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #41444b;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #f1f1f1;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #ffe05d;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+  .button {
+    display: inline-block;
+    border-radius: 4px;
+    /* background-color: #f4511e; */
+    background-color: #7579e7;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 19px;
+    padding: 6px;
+    width: 120px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+  .button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .button:hover span {
+    padding-right: 25px;
+  }
+  
+  .button:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #41444b;
+    color: white;
+    text-align: center;
+ }
+
+ .fa {
+  padding-top: 15px;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  font-size: 40px;
+  width: 40px;
+  text-align: center;
+  text-decoration: none;
+  margin: 1px 0px;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-github {
+  position: relative;
+  background: #7579e7;
+  color: white;
+}
 	</style>
-	<!-- <link rel="stylesheet" href="styles1.css"> -->
 </head>
 
 <body>
+	<div style="padding-left: 25px;padding-top: 25px;">
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="https://predictor-titanic.herokuapp.com/graph1">Survival Ratio</a>
+            <a href="https://predictor-titanic.herokuapp.com/graph2">Age Count</a>
+            <a href="https://predictor-titanic.herokuapp.com/graph3">Survived vs Siblings</a>
+            <a href="https://predictor-titanic.herokuapp.com/graph4">Embarked</a>
+            <a href="https://predictor-titanic.herokuapp.com/graph6">Age vs Fare vs Survived</a>
+            <a href="https://predictor-titanic.herokuapp.com/graph7">Age vs Sex vs Survived</a>
+            <a href="https://predictor-titanic.herokuapp.com/graph9">Age vs Fare vs PClass vs Survived</a>
+        </div>
+          
+        <span style="font-size:20px;cursor:pointer;color: white;" onclick="openNav()">&#9776; Analysis</span>
+        </div>
+        <script>
+            function openNav() {
+              document.getElementById("mySidenav").style.width = "250px";
+            }
+            
+            function closeNav() {
+              document.getElementById("mySidenav").style.width = "0";
+            }
+        </script>
+
 	<div class="flex-container">
 
 		<div class="flex-child 1">
+			<br>
 			<h1 style="font-size: 45px;
 					   text-align: center;"> Titanic Survival <br>Predictor</h1>
 			<div style="text-align: center;
@@ -52,7 +189,7 @@
 
 		<div class="flex-child 2">
 			<br>
-			<form action = "/result" method = "POST">
+			<form action = "http://localhost:5000/result" method = "POST">
 				<h2 style="color: #ffe05d;">Hypothetically, If you were a passenger on the titanic,<br> How would you describe yourself</h2>
 				<label for="fname" >Name : </label><br>
 				<select name="title" id="title">
@@ -78,23 +215,27 @@
 				<input type="text" id="fname" name="fname">
 				<br><br>
 
-				<label for="pclass">You are most likely to be able to afford which ticket :</label><br>
+				<label for="pclass" >You are most likely to be able to afford which ticket :</label><br>
 				<input type="radio" id="male" name="pclass" value="1">
-				<label for="1">First Class (30£ -870£ (approx.1724$-50000$ adjusted for inflation))</label><br>
+				<label for="1">First Class </label>
+				<label for="1" style="font-size: 12px;">(30£ -870£ (approx.1724$-50000$ adjusted for inflation))</label><br>
 				<input type="radio" id="female" name="pclass" value="2">
-				<label for="2">Second Class (12£ (approx. $690 adjusted for inflation))</label><br>
+				<label for="2">Second Class </label>
+				<label for="2" style="font-size: 12px;">(12£ (approx. $690 adjusted for inflation))</label><br>
 				<input type="radio" id="other" name="pclass" value="3">
-				<label for="3">Third Class (3£ -8£ (approx. 172$-460$ adjusted for inflation))</label>
+				<label for="3">Third Class</label>
+				<label for="3" style="font-size: 12px;">(3£ -8£ (approx. 172$-460$ adjusted for inflation))</label>
 				<br><br>
 
-				<label for="Gender">Gender : (As The Titanic was boarding passengers during a less progressive time hence there is no data for non-binary genders)</label><br>
+				<label for="Gender" >Gender : </label><br>
+				<label for="Gender" style="font-size: 12px;">(As The Titanic was boarding passengers during a less progressive time hence there is no data for non-binary genders)</label><br>
 				<select name="gender" id="genders">
 				  <option value="0">Male</option>
 				  <option value="1">Female</option>
 				</select>
 				<br><br>
 
-				<label for="fsize">Age : </label><br>
+				<label for="fsize" >Age : </label><br>
 				<input type="number" id="age" name="age" min="0" max="100">
 				<br><br>
 
@@ -102,10 +243,19 @@
 				<input type="number" id="fzise" name="fsize" min="0" max="10">
 				<br><br>
 
-				<input type="submit" value="Submit">
+				<!-- <input type="submit" value="Submit"> -->
+				<button type="submit" value="Submit" class="button" style="vertical-align:middle"><span>Submit </span></button>
+				
 			</form>
+
 			<div id="result">
+				<br>
 				{{result}}
+			</div>
+
+			<div class="footer">
+				<a style="float: right;font-size: 30px;" href="#" class="fa fa-github"></a>
+				<p style="font-size: 18px;">Made with 💛 by Anirudh VSP and Mayank Pagar</p>
 			</div>
 
 		</div>

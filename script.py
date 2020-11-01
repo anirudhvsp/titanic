@@ -51,5 +51,18 @@ def result():
       else:
       	prob="Result : Survival is Certain"
       return render_template("titanic2.html",result = prob)
-
+@app.route('/graph1')
+      return render_template('graph1.html')
+@app.route('/graph2')
+      return render_template('graph2.html')
+@app.route('/graph3')
+      return render_template('graph3.html')
+@app.route('/graph4')
+      return render_template('graph4.html')
+@app.route('/graph6')
+      return render_template('graph6.html')
+@app.route('/graph7')
+      return render_template('graph7.html')
+@app.route('/graph9')
+      return render_template('graph9.html')
 # app.run(debug = True)
